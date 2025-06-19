@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Image Toggle with Corner Button</title>
+  <style>
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 50px 0;
+      font-family: sans-serif;
+      background-color: #111;
+      color: white;
+    }
+
+    #mainImage {
+      width: 100%;
+      height: auto;
+      max-height: 90vh;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #0f0;
+    }
+
+    #toggleBtn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1000;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      animation: float 1s ease-in-out infinite;
+    }
+
+    #toggleBtn img {
+      display: block;
+      width: 80px;
+      height: auto;
+    }
+
+    @keyframes float {
+      0%, 100%   { transform: translateY(0); }
+      50%        { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Corner “A” button -->
+  <button id="toggleBtn">
+    <img src="https://ipfs.io/ipfs/bafybeibqunvukim6czvbu2rj3o4yizat7g6tdm7vz5wewclwykgxiv3h6y/Appreciator-A.png" alt="Toggle Image" />
+  </button>
+
+  <!-- Display NFT Image -->
+  <img
+    id="mainImage"
+    src="https://ipfs.io/ipfs/bafybeibqunvukim6czvbu2rj3o4yizat7g6tdm7vz5wewclwykgxiv3h6y/Appreciator-OG-1150.png"
+    alt="Appreciator Static"
+  />
+
+  <script>
+    (function() {
+      const mainImg     = document.getElementById('mainImage');
+      const toggleBtn   = document.getElementById('toggleBtn');
+      const staticSrc   = 'https://ipfs.io/ipfs/bafybeibqunvukim6czvbu2rj3o4yizat7g6tdm7vz5wewclwykgxiv3h6y/Appreciator-OG-1150.png';
+      const gifSrc      = 'https://ipfs.io/ipfs/bafybeibqunvukim6czvbu2rj3o4yizat7g6tdm7vz5wewclwykgxiv3h6y/Appreciators-gif-1150.gif';
+      let showingStatic = true;
+
+      toggleBtn.addEventListener('click', () => {
+        showingStatic = !showingStatic;
+        mainImg.src = showingStatic ? staticSrc : gifSrc;
+        mainImg.alt = showingStatic ? 'Appreciator Static' : 'Appreciator Animated';
+      });
+    })();
+  </script>
+
+</body>
+</html>
